@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\produk;
-use App\Models\kategori;
+use App\Models\Produk;
+use App\Models\Kategori;
 use Illuminate\Http\Request;
 
 class ProdukController extends Controller
@@ -29,7 +29,7 @@ class ProdukController extends Controller
     {
 
         $model = new produk;
-        $kategori = kategori::all();
+        $kategori = Kategori::all();
         return view('produk.create', compact('model', 'kategori'));
     }
 
@@ -41,7 +41,7 @@ class ProdukController extends Controller
      */
     public function store(Request $request)
     {
-        $model = new produk;
+        $model = new Produk;
         $this->validate($request, [
             'nama' => 'required',
             'kategori_id' => 'required',
@@ -68,10 +68,10 @@ class ProdukController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\produk  $produk
+     * @param  \App\Models\Produk  $produk
      * @return \Illuminate\Http\Response
      */
-    public function show(produk $produk)
+    public function show(Produk $produk)
     {
         //
     }
@@ -84,8 +84,8 @@ class ProdukController extends Controller
      */
     public function edit($id)
     {
-        $produk = produk::find($id);
-        $kategori = kategori::all();
+        $produk = Produk::find($id);
+        $kategori = Kategori::all();
         return view('produk.edit', compact('produk', 'kategori'));
     }
 
@@ -93,12 +93,12 @@ class ProdukController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\produk  $produk
+     * @param  \App\Models\Produk  $produk
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        $model = produk::findorfail($id);
+        $model = Produk::findorfail($id);
         $this->validate($request, [
             'nama' => 'required',
             'kategori_id' => 'required',
@@ -127,13 +127,13 @@ class ProdukController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\produk  $produk
+     * @param  \App\Models\Produk  $produk
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
         // @dd('i am here');
-        $hapus = produk::findorfail($id);
+        $hapus = Produk::findorfail($id);
         $foto = public_path('img/') . $hapus->foto;
         // dd($foto);
         if (file_exists($foto)) {

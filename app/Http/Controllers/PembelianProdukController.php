@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\pembelian_produk;
+use App\Models\Pembelian_produk;
 use Illuminate\Http\Request;
 
 class PembelianProdukController extends Controller

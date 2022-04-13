@@ -26,7 +26,7 @@
 <div class="row align-items-start">
     @foreach($produks as $key=>$value)
    
-    <div class="col-md-2 mt-3">
+    <div class="tampilanproduk">
     <div class="card" style="width: 10rem;">
       <img src="{{ asset('img/'.$value->foto) }}" class="card-img-top" alt="..." width="">
       <div class="card-body">

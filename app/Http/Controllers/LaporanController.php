@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\laporan;
+use App\Models\Laporan;
 use Illuminate\Http\Request;
 use App\Models\Pembelian_produk;
 use Carbon\Carbon;

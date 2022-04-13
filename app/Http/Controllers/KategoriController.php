@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\kategori;
+use App\Models\Kategori;
 use Illuminate\Http\Request;
 
 class KategoriController extends Controller
@@ -14,7 +14,7 @@ class KategoriController extends Controller
      */
     public function index()
     {
-        $kategoris = kategori::all();
+        $kategoris = Kategori::all();
         return view('kategori.index', compact('kategoris'));
     }
 
@@ -25,7 +25,7 @@ class KategoriController extends Controller
      */
     public function create()
     {
-        $model = new kategori;
+        $model = new Kategori;
         return view('kategori.create', compact('model'));
     }
 
@@ -37,7 +37,7 @@ class KategoriController extends Controller
      */
     public function store(Request $request)
     {
-        $model = new kategori;
+        $model = new Kategori;
         $this->validate($request, [
             'nama_kategori' => 'required',
             'icon_kategori' => 'required|image|mimes:jpg,png,jpeg,gif,svg'
@@ -56,7 +56,7 @@ class KategoriController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\kategori  $kategori
+     * @param  \App\Models\Kategori  $kategori
      * @return \Illuminate\Http\Response
      */
     public function show(kategori $kategori)
@@ -67,12 +67,12 @@ class KategoriController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\kategori  $kategori
+     * @param  \App\Models\Kategori  $kategori
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        $model = kategori::find($id);
+        $model = Kategori::find($id);
         return view('kategori.edit', compact('model'));
     }
 
@@ -80,12 +80,12 @@ class KategoriController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\kategori  $kategori
+     * @param  \App\Models\Kategori  $kategori
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        $model = kategori::findorfail($id);
+        $model = Kategori::findorfail($id);
         $this->validate($request, [
             'nama_kategori' => 'required',
             'icon_kategori' => 'image|mimes:jpg,png,jpeg,gif,svg'
@@ -107,12 +107,12 @@ class KategoriController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\kategori  $kategori
+     * @param  \App\Models\Kategori  $kategori
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        $hapus = kategori::findorfail($id);
+        $hapus = Kategori::findorfail($id);
         $icon = public_path('icon/') . $hapus->icon;
         // dd($foto);
         if (file_exists($icon)) {

@@ -26,7 +26,12 @@
       @endforeach
       </tbody>
     </table>
-    <a href="{{ url()->previous() }}" class="btn btn-sm btn-secondary">Back</a>
+    <Pre class="mt-5">
+      <b>Total Pesanan    : Rp.{{ number_format($pembelian->total_pembelian) }}</b><br>
+      <b>Biaya Pengiriman : Rp.{{ number_format($pembelian->tarif) }}</b><br>
+      <b>Total Pembayaran : Rp.{{ number_format($pembelian->total_pembelian + $pembelian->tarif) }}</b><br>
+    </Pre>
+    <a href="{{ url()->previous() }}" class="btn btn-sm btn-secondary mb-2">Back</a>
     @if ( $status == 1)
     <form method="POST" action="{{ url('ubahstatus1') }}/{{ $id }}">
         @csrf

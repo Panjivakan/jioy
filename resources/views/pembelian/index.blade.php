@@ -2,12 +2,18 @@
 
 @section('konten')
 <h1>Pembelian</h1>
+<form method="get" action="{{ route('caripembelian') }}" class="d-flex mb-3">
+    @csrf
+  <input class="form-control me-1" name="cari" type="text" placeholder="Cari Kode Pembelian ..." aria-label="Search">
+  <button class="btn" type="submit"><i class="bi bi-search"></i></button>
+</form>
     <table class="table table-bordered">
         <thead>
             <tr>
                 <th>No</th>
-                <th>Id Pembelian</th>
+                <th>Kode Pembelian</th>
                 <th>Pelanggan</th>
+                <th>Daerah</th>
                 <th>Alamat</th>
                 <th>Tanggal Pesanan</th>
                 <th>Waktu Pesanan</th>
@@ -21,9 +27,10 @@
                 <td>{{ $key+1 }}</td>
                 <td>{{ $value->id }}</td>
                 <td>{{ $value->pelanggan->nama }}</td>
+                <td>{{ $value->daerah }}</td>
                 <td>{{ $value->alamat }}</td>
-                <td>{{ $value->created_at->format('d-m-Y H:i') }}</td>
-                <td>{{ $value->created_at->format('H:i') }}</td>
+                <td>{{ $value->updated_at->format('d-m-Y H:i') }}</td>
+                <td>{{ $value->updated_at->format('H:i') }}</td>
 
                 <td>
                     @if ( $value->status == 1)

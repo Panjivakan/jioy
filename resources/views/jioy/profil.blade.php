@@ -49,6 +49,7 @@
         <thead>
           <tr>
             <th scope="col">No</th>
+            <th scope="col">Kode Pesanan</th>
             <th scope="col">Total Pesanan</th>
             <th scope="col">Tanggal Pesanan</th>
             <th scope="col">Jam Pesanan</th>
@@ -60,9 +61,10 @@
           @foreach($pembelian as $key=>$value1)
           <tr>
             <th scope="row">{{ $key+1 }}</th>
-            <td>{{ $value1->total_pembelian + $value1->tarif }}</td>
-            <td>{{ $value1->created_at->format('d-m-Y') }}</td>
-            <td>{{ $value1->created_at->format('H:i') }}</td>
+            <td>{{ $value1->id }}</td>
+            <td>Rp. {{ number_format($value1->total_pembelian + $value1->tarif) }}</td>
+            <td>{{ $value1->updated_at->format('d-m-Y') }}</td>
+            <td>{{ $value1->updated_at->format('H:i') }}</td>
             <td><a href="{{ url('produkpesanan/'.$value1->id) }}" class="btn btn-info">Detail</a></td>
           </tr>
           @endforeach
@@ -79,6 +81,7 @@
         <thead>
           <tr>
             <th scope="col">No</th>
+            <th scope="col">kode Pesanan</th>
             <th scope="col">Total Pembelian</th>
             <th scope="col">Tanggal Pengiriman</th>
             <th scope="col">Jam Pengiriman</th>
@@ -90,7 +93,8 @@
           @foreach($pembelian2 as $key=>$value2)
           <tr>
             <th scope="row">{{ $key+1 }}</th>
-            <td>{{ $value2->total_pembelian }}</td>
+            <td>{{ $value2->id }}</td>
+            <td>Rp. {{ number_format($value2->total_pembelian) }}</td>
             <td>{{ $value2->updated_at->format('d-m-Y') }}</td>
             <td>{{ $value2->updated_at->format('H:i') }}</td>
             <td><a href="{{ url('produkpesanan/'.$value2->id) }}" class="btn btn-info">Detail</a></td>
@@ -110,6 +114,7 @@
         <thead>
           <tr>
             <th scope="col">No</th>
+            <th scope="col">kode Pesanan</th>
             <th scope="col">Total Pembelian</th>
             <th scope="col">Tanggal Penerimaan</th>
             <th scope="col">Jam Penerimaan</th>
@@ -121,7 +126,8 @@
         @foreach($pembelian3 as $key=>$value3)
           <tr>
             <th scope="row">{{ $key+1 }}</th>
-            <td>{{ $value3->total_pembelian }}</td>
+            <td>{{ $value3->id }}</td>
+            <td>Rp. {{ number_format($value3->total_pembelian) }}</td>
             <td>{{ $value3->updated_at->format('d-m-Y') }}</td>
             <td>{{ $value3->updated_at->format('H:i') }}</td>
             <td><a href="{{ url('produkpesanan/'.$value3->id) }}" class="btn btn-info">Detail</a></td>

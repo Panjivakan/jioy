@@ -1,3 +1,9 @@
+<?php
+use App\Models\Pembelian;
+use App\Models\Pembelian_produk;
+
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -13,6 +19,19 @@
           div.tabelsembunyi {
             display:none;
           }
+          @media screen and (min-width: 450px) {
+            .tampilanproduk {
+              width: 20%;
+              margin-bottom: 10px;
+            }
+          }
+          @media screen and (min-width: 800px) {
+            .tampilanproduk {
+              width: 30%;
+              margin-bottom: 10px;
+            }
+          }
+
         </style>
       </head>
       
@@ -44,10 +63,10 @@
             <span class="navbar-text">
               @auth
               <?php
-                $pesan = App\Models\Pembelian::where('pelanggan_id', Auth::guard('pelanggan')->user()->id)->where('status', 0)->first();
+                $pesan = Pembelian::where('pelanggan_id', Auth::guard('pelanggan')->user()->id)->where('status', 0)->first();
                 $notif = null;
                 if (!empty($pesan)) {
-                  $notif = App\Models\Pembelian_produk::where('pembelian_id', $pesan->id)->count();
+                  $notif = Pembelian_produk::where('pembelian_id', $pesan->id)->count();
                 }
               ?>
               <a class="navbar-brand" href="{{ url('checkout') }}">

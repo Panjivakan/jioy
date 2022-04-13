@@ -26,5 +26,9 @@
       @endforeach
       </tbody>
     </table>
-    <a href="{{ url()->previous() }}" class="btn btn-secondary">Back</a>
+    <b>Total Pesanan : Rp. {{ number_format($pembelian->total_pembelian) }}</b><br>
+    <b>Ongkir : Rp. {{ number_format($pembelian->tarif) }}</b><br>
+    <b>Total : Rp. {{ number_format($pembelian->total_pembelian + $pembelian->tarif) }}</b><br>
+
+    <a href="{{ url()->previous() }}" class="btn btn-secondary mt-3">Back</a>
 @endsection

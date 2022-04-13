@@ -61,7 +61,7 @@ class PelangganController extends Controller
 
         $pelanggan = Pelanggan::create($validateData);
         if (!is_null($pelanggan)) {
-            return back()->with("success", "Berhasil! Data Berhasil disimpan");
+            return view("/login")->with("success", "Berhasil! Data Berhasil disimpan");
         } else {
             return back()->with("failed", "Gagal! Data Berhasil disimpan");
         }

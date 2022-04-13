@@ -51,7 +51,7 @@
                         </div> --}}
                         <div class="row mb-3 px-3 mt-3"> <button type="submit" class="btn btn-primary text-center">Login</button> </div>
                     </form>
-                        <div class="row mb-4 px-3"> <small class="font-weight-bold">Belum punya akun? <a href="/register" class="text-danger ">Register</a></small> </div>
+                        <div class="row mb-4 px-3"> <small class="font-weight-bold">Belum punya akun? <a href="/register" class="text-danger ">Daftar</a></small> </div>
                     </div>
                 </div>
             </div>

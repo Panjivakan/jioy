@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class pembelian_produk extends Model
+class Pembelian_produk extends Model
 {
     // use HasFactory;
     public function pembelian()

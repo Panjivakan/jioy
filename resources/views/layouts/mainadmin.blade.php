@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Laravel</title>
+        <title>JioyAdmin</title>
         <link rel="stylesheet" href="{{asset('front/css/bootstrap.css')}}">
         {{-- <link rel="stylesheet" href="{{asset('front/css/mystyle.css')}}"> --}}
 

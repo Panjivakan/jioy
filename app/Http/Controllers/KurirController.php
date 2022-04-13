@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\kurir;
+use App\Models\Kurir;
 use Illuminate\Http\Request;
 
 class KurirController extends Controller
@@ -14,7 +14,7 @@ class KurirController extends Controller
      */
     public function index()
     {
-        $kurir = kurir::all();
+        $kurir = Kurir::all();
         return view('kurir.index', compact('kurir'));
     }
 
@@ -25,7 +25,7 @@ class KurirController extends Controller
      */
     public function create()
     {
-        $model = new kurir;
+        $model = new Kurir;
         return view('kurir.create', compact('model'));
     }
 
@@ -37,7 +37,7 @@ class KurirController extends Controller
      */
     public function store(Request $request)
     {
-        $model = new kurir;
+        $model = new Kurir;
         $this->validate($request, [
             'daerah' => 'required',
             'tarif' => 'required'
@@ -52,10 +52,10 @@ class KurirController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\kurir  $kurir
+     * @param  \App\Models\Kurir  $kurir
      * @return \Illuminate\Http\Response
      */
-    public function show(kurir $kurir)
+    public function show(Kurir $kurir)
     {
         //
     }
@@ -63,12 +63,12 @@ class KurirController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\kurir  $kurir
+     * @param  \App\Models\Kurir  $kurir
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        $model = kurir::find($id);
+        $model = Kurir::find($id);
         return view('kurir.edit', compact('model'));
     }
 
@@ -76,12 +76,12 @@ class KurirController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\kurir  $kurir
+     * @param  \App\Models\Kurir  $kurir
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        $model = kurir::find($id);
+        $model = Kurir::find($id);
         $this->validate($request, [
             'daerah' => 'required',
             'tarif' => 'required'
@@ -96,12 +96,12 @@ class KurirController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\kurir  $kurir
+     * @param  \App\Models\Kurir  $kurir
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        $hapus = kurir::findorfail($id);
+        $hapus = Kurir::findorfail($id);
         $hapus->delete();
         return redirect('kurir');
     }

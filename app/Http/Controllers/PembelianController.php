@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\pembelian;
+use App\Models\Pembelian;
 use App\Models\Pembelian_produk;
 use Illuminate\Http\Request;
 
@@ -16,7 +16,14 @@ class PembelianController extends Controller
      */
     public function index()
     {
-        $pembelian = Pembelian::where('status', 1)->orWhere('status', 2)->orWhere('status', 3)->orderBy('status')->get();
+        $pembelian = Pembelian::where('status', 1)->orWhere('status', 2)->orWhere('status', 3)->orderBy('status')->orderBy('updated_at', 'DESC')->get();
+        return view('pembelian.index', compact('pembelian'));
+    }
+    protected function caripembelian(Request $request)
+    {
+        $keyword = $request->cari;
+        $pembelian = Pembelian::where('id', 'like', "%" . $keyword . "%")->get();
+
         return view('pembelian.index', compact('pembelian'));
     }
 }

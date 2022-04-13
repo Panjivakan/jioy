@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\kategori;
+use App\Models\Kategori;
 use Illuminate\Http\Request;
-use App\Models\produk;
+use App\Models\Produk;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Pelanggan;
 use App\Models\Pembelian;
 use App\Models\Pembelian_produk;
 use Alert;
+use App\Models\Kurir;
 // use RealRashid\SweetAlert\Facades\Alert;
 
-use App\Models\kurir;
 // use app\storage\Session;
 
 
@@ -23,7 +23,7 @@ class JioyController extends Controller
     protected function index()
     {
         $produks = Produk::all();
-        $kategoris = kategori::all();
+        $kategoris = Kategori::all();
 
         // dd($produks);
         return view('jioy.welcome', compact('produks', 'kategoris'));
@@ -31,7 +31,7 @@ class JioyController extends Controller
     protected function filterkategori($id)
     {
         $produks = Produk::where('kategori_id', $id)->get();
-        $kategoris = kategori::all();
+        $kategoris = Kategori::all();
 
         // dd($produks);
         return view('jioy.welcome', compact('produks', 'kategoris'));
@@ -40,7 +40,7 @@ class JioyController extends Controller
     {
         $keyword = $request->cari;
         $produks = Produk::where('nama', 'like', "%" . $keyword . "%")->get();
-        $kategoris = kategori::all();
+        $kategoris = Kategori::all();
 
         // dd($produks);
         return view('jioy.welcome', compact('produks', 'kategoris'));
@@ -142,13 +142,16 @@ class JioyController extends Controller
     protected function produkpesanan($id)
     {
         $pembelian_produk = Pembelian_produk::where('pembelian_id', $id)->get();
-        return view('jioy.lihatprodukpesanan', compact('pembelian_produk'));
+        $pembelian = Pembelian::where('id', $id)->first();
+        return view('jioy.lihatprodukpesanan', compact('pembelian_produk', 'pembelian'));
     }
 
     protected function adminprodukpesanan($id, $status)
     {
         $pembelian_produk = Pembelian_produk::where('pembelian_id', $id)->get();
-        return view('admin.lihatprodukpesanan', compact('pembelian_produk', 'status', 'id'));
+        $pembelian = Pembelian::where('id', $id)->first();
+
+        return view('admin.lihatprodukpesanan', compact('pembelian_produk', 'status', 'id', 'pembelian'));
     }
 
     protected function checkout()
@@ -178,6 +181,11 @@ class JioyController extends Controller
     }
     protected function detail($id)
     {
+        if (empty(Auth::guard('pelanggan')->user()->id)) {
+            alert()->html('<i>Maaf!</i>', " Silakan, <b> <a href='/login'>Login</a> Dulu", 'warning');
+            // alert()->warning('Maaf!', 'Silakan Login Dulu');
+            return redirect('/');
+        }
         $produk = Produk::where('id', $id)->first();
         return view('jioy.detail', compact('produk'));
     }

@@ -33,6 +33,8 @@ use App\Http\Controllers\PelangganController;
 Route::get('/', [JioyController::class, 'index'])->name('/');
 Route::post('/filterkategori/{id}', [JioyController::class, 'filterkategori']);
 Route::get('/cari', [JioyController::class, 'cari'])->name('cari');
+Route::post('/detail/{id}', [JioyController::class, 'detail']);
+
 
 
 
@@ -64,6 +66,7 @@ Route::group(['middleware' => ['auth:admin']], function () {
     Route::resource('kurir', KurirController::class);
     Route::get('/pelanggan', [PelangganController::class, 'index']);
     Route::resource('pembelian', PembelianController::class);
+    Route::get('/caripembelian', [PembelianController::class, 'caripembelian'])->name('caripembelian');
     Route::get('/adminprodukpesanan/{id}/{status}', [JioyController::class, 'adminprodukpesanan']);
 
     Route::resource('laporan', LaporanController::class);
@@ -79,7 +82,7 @@ Route::group(['middleware' => ['auth:pelanggan']], function () {
     Route::get('/checkout', [JioyController::class, 'checkout']);
     Route::delete('/checkout/{id}', [JioyController::class, 'delete']);
     Route::post('/keranjang/{id}', [JioyController::class, 'keranjang']);
-    Route::post('/detail/{id}', [JioyController::class, 'detail']);
+    // Route::post('/detail/{id}', [JioyController::class, 'detail']);
     Route::post('/checkoutkonfirmasi', [JioyController::class, 'konfirmasi']);
     Route::post('/ubahjumlah', [JioyController::class, 'jumlah']);
     Route::get('/profil', [JioyController::class, 'profil'])->name('/profil');
